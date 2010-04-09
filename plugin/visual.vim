@@ -9,3 +9,7 @@ if v:version < 704
   nnoremap gn //e<Return>v??<Return>
   nnoremap gN ??e<Return>v??<Return>
 endif
+
+Shortcut visually select buffer
+      \ nnoremap <Space>vb m'ggVG
+

@@ -1,3 +1,7 @@
+" retain relative cursor position when paging
+nnoremap <PageUp> <C-U>
+nnoremap <PageDown> <C-D>
+
 " store relative line number jumps in jumplist
 " while treating wrapped lines like real lines
 " but don't do this if going up/down by 1 line
