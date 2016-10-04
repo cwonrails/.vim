@@ -21,7 +21,9 @@ separate little files that all focus on a single topic and _do one thing well_.
   * [Locking](#locking)
 * [Shortcuts](#shortcuts)
   * [Cheatsheet](#cheatsheet)
+  * [Leader](#leader)
   * [Space](#space)
+  * [Command](#command)
   * [Buffer](#buffer)
   * [Quit](#quit)
   * [Window](#window)
@@ -256,7 +258,9 @@ Unlock a locked *BUNDLE* so that it can be updated again:
 
 ## Shortcuts
 
-This branch of the Vim configuration defines the following shortcuts.
+This branch of the Vim configuration defines the following shortcuts, which
+assume that you [type in Dvorak]( http://www.dvzine.org/zine/01-toc.html ).
+If this assumption doesn't apply to you, then try the [qwerty] branch instead.
 
 * `<C-C>` is like `<Esc>` but it doesn't break macros containing the Alt key.
 * Run `stty -ixon` before launching Vim to use `<C-S>` and `<C-Q>` shortcuts.
@@ -267,8 +271,11 @@ This listing is *always* available in Vim: just press the **space bar** twice!
 
 Shortcut | Description
 ---------|------------
+``-`` | (sneak) repeat the most recent Sneak forward
 ``<C-Q>`` | quit vim
 ``<C-S>`` | strip trailing whitespace in buffer and write buffer to file
+``<C-\>h`` | vim's original `h` key
+``<C-\>l`` | vim's original `l` key
 ``<Leader><C-Q>`` | quit vim forcefully
 ``<Leader><Leader>K`` | (dasht) search ALL the docsets for cursor word or selected text
 ``<Leader><Leader>k`` | (dasht) search ALL the docsets at command prompt
@@ -500,7 +507,7 @@ Shortcut | Description
 ``=p`` | Paste after cursor, linewise, reindenting.
 ``>P`` | Paste before cursor, linewise, increasing indent.
 ``>p`` | Paste after cursor, linewise, increasing indent.
-``S`` | surround {motion} or selection with specified delimiters
+``S`` | (sneak) go to {characters} in text before cursor
 ``ZA`` | align all folds
 ``ZC`` | append end foldmarker of level [count] with comment
 ``ZD`` | delete foldmarker from current line
@@ -594,6 +601,9 @@ Shortcut | Description
 ``]xx`` | XML unescape current line.
 ``]y`` | String unescape.
 ``]yy`` | String unescape current line.
+``_`` | (sneak) repeat the most recent Sneak backward
+``cH`` | change automatic delimiters surrounding {motion}
+``ch`` | change specified delimiters surrounding {motion}
 ``coQ`` | toggle automatic formatting in buffer
 ``cob`` | toggle assuming light background
 ``coc`` | toggle highlighting cursor's line
@@ -609,10 +619,8 @@ Shortcut | Description
 ``cow`` | toggle wrapping very long lines
 ``cox`` | toggle highlighting cursor's position
 ``coz`` | toggle code folding in buffer
-``cs`` | change specified delimiters surrounding {motion}
-``css`` | change automatic delimiters surrounding {motion}
-``ds`` | remove specified delimiters surrounding {motion}
-``dss`` | remove automatic delimiters surrounding {motion}
+``dH`` | remove automatic delimiters surrounding {motion}
+``dh`` | remove specified delimiters surrounding {motion}
 ``g<`` | swap delimited item to the left
 ``g>`` | swap delimited item to the right
 ``g@`` | decorate {motion} or selection as ASCII art using FIGlet
@@ -625,10 +633,13 @@ Shortcut | Description
 ``gr`` | Replace {motion} text with the contents of specified register.
 ``grr`` | Replace [count] lines with the contents of specified register.
 ``gs`` | swap delimited item interactively
+``h`` | surround {motion} or selection with specified delimiters
+``l`` | enter insert mode to substitute character at cursor
+``s`` | (sneak) go to {characters} in text after cursor
+``yH`` | yank line and surround with specified delimiters
 ``yO`` | Paste before cursor, linewise, using set 'paste'.
-``yS`` | yank line and surround with specified delimiters
+``yh`` | yank {motion} and surround with specified delimiters
 ``yo`` | Paste after cursor, linewise, using set 'paste'.
-``ys`` | yank {motion} and surround with specified delimiters
 
 To generate the above listing, run this command in Vim:
 
@@ -637,11 +648,19 @@ call append('.', sort(values(map(copy(g:shortcuts), '"``". v:key ."`` | ". v:val
 :'<,'>s/ | .*\zs<.\{-}>/``&``/g
 ```
 
+### Leader
+
+* `,` is the `<Leader>`, used in _some_ shortcuts in this configuration.
+
 ### Space
 
 * `<Space>` (space bar) precedes _most_ shortcuts in this configuration.
   Press it and wait for 2 seconds for searchable menu of all shortcuts.
 * `<Space><Space>` immediately opens a searchable menu of all shortcuts.
+
+### Command
+
+* `;` puts Vim into command mode. It is a shift-less alternative to `:`.
 
 ### Buffer
 
@@ -655,11 +674,11 @@ call append('.', sort(values(map(copy(g:shortcuts), '"``". v:key ."`` | ". v:val
 
 Focus:
 
+* `<A-d>` focuses previously focused tmux pane.
 * `<A-h>` focuses window at left.
-* `<A-j>` focuses window above.
-* `<A-k>` focuses window below.
-* `<A-l>` focuses window at right.
-* `<A-;>` focuses previously focused tmux pane.
+* `<A-t>` focuses window above.
+* `<A-n>` focuses window below.
+* `<A-s>` focuses window at right.
 
 Scroll:
 
@@ -697,6 +716,7 @@ Level:
 * `=` is for [merge conflict](https://github.com/rhysd/vim-textobj-conflict).
 * `c` and `C` are for [vertical columns](https://github.com/coderifous/textobj-word-column.vim).
 * `g` is for [Git hunks](https://github.com/airblade/vim-gitgutter).
+* `h` and `H` are for [surrounded text](https://github.com/machakann/vim-sandwich).
 * `i` is for [indentation](https://github.com/thinca/vim-textobj-between).
 * `l` is for [the current line](https://github.com/kana/vim-textobj-line).
 * `o` and `O` are for [code comments](https://github.com/glts/vim-textobj-comment).
@@ -717,6 +737,8 @@ Level:
 ### Search
 
 * `<C-L>` clears search highlighting; also recalculates hunks when diffing.
+* `-` repeats the current `f`,`F`,`t`,`T` forward like the original `;` does.
+* `_` repeats the current `f`,`F`,`t`,`T` backward like the original `,` does.
 
 ### Select
 
