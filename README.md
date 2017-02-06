@@ -269,13 +269,11 @@ Shortcut | Description
 ---------|------------
 ``<C-Q>`` | quit vim
 ``<C-S>`` | strip trailing whitespace in buffer and write buffer to file
-``<C-\>R`` | vim's original replace mode
 ``<Leader><C-Q>`` | quit vim forcefully
 ``<Leader><Leader>K`` | (dasht) search ALL the docsets for cursor word or selected text
 ``<Leader><Leader>k`` | (dasht) search ALL the docsets at command prompt
 ``<Leader>K`` | (dasht) search related docsets for cursor word or selected text
 ``<Leader>P`` | paste before cursor, adding a space
-``<Leader>R`` | exchange {motion} with register value
 ``<Leader>[[`` | blockwise surround at start and end of line
 ``<Leader>[]`` | blockwise insert at start then end of line
 ``<Leader>]]`` | blockwise surround at start and end of line
@@ -502,8 +500,6 @@ Shortcut | Description
 ``=p`` | Paste after cursor, linewise, reindenting.
 ``>P`` | Paste before cursor, linewise, increasing indent.
 ``>p`` | Paste after cursor, linewise, increasing indent.
-``RR`` | replace line with register value
-``R`` | replace {motion} with register value
 ``S`` | surround {motion} or selection with specified delimiters
 ``ZA`` | align all folds
 ``ZC`` | append end foldmarker of level [count] with comment
@@ -626,6 +622,8 @@ Shortcut | Description
 ``gS`` | split line at cursor into multiple lines
 ``g[`` | show ctag at cursor
 ``ga`` | inspect Unicode character at cursor
+``gr`` | Replace {motion} text with the contents of specified register.
+``grr`` | Replace [count] lines with the contents of specified register.
 ``gs`` | swap delimited item interactively
 ``yO`` | Paste before cursor, linewise, using set 'paste'.
 ``yS`` | yank line and surround with specified delimiters
